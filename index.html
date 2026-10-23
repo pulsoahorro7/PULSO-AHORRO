@@ -132,7 +132,7 @@ function saveGoal(){
  state.name=$('goalName').value.trim()||'Mi objetivo';state.target=target;state.saved=saved;state.weeks=Number($('weeks').value);state.frequency=$('frequency').value;
  persist();render();showToast('Objetivo guardado en este dispositivo.');
 }
-function chooseChallenge(name,amount){state.name=name;state.saved=Math.min(state.target,state.saved+amount);$('goalName').value=name;$('savedAmount').value=state.saved;persist();render();showToast('Reto añadido como simulación: '+euro(amount)+'. Ajusta tu ahorro real al registrarlo.')}
+function chooseChallenge(name,amount){state.name=name;$('goalName').value=name;persist();render();showToast('Reto seleccionado: '+name+'. Registra solo el dinero que hayas ahorrado de verdad.')}
 function addDeposit(){
  const amount=num('deposit');if(amount<=0){showToast('Introduce una cantidad mayor que 0 €.');return}
  state.saved=Math.min(state.target,state.saved+amount);state.days+=1;state.history.push({amount,note:$('note').value.trim(),date:new Date().toLocaleDateString('es-ES')});
