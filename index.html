@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#153c31">
+<meta name="description" content="PULSO: convierte tus objetivos de ahorro en pequeños retos alcanzables.">
+<title>PULSO — Tus objetivos, a tu ritmo</title>
+<style>
+:root{--forest:#153c31;--forest2:#245747;--lime:#d9f6b7;--cream:#f7f5ed;--paper:#fffef9;--ink:#1d2b25;--muted:#758078;--line:#e4e8df;--orange:#f3a66b}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1120px;margin:auto;padding:22px 22px 60px}
+nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1.5px;font-size:22px}.brandmark{width:38px;height:38px;border-radius:13px;background:var(--forest);display:grid;place-items:center;color:var(--lime);font-size:22px}.navright{font-size:13px;color:var(--muted)}
+.hero{background:var(--forest);color:white;border-radius:28px;padding:clamp(24px,5vw,52px);position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.hero:after{content:"";position:absolute;width:340px;height:340px;border:1px solid #ffffff18;border-radius:50%;right:-110px;top:-140px;box-shadow:0 0 0 38px #ffffff08,0 0 0 78px #ffffff05;pointer-events:none}.eyebrow{color:var(--lime);font-size:12px;letter-spacing:1.8px;font-weight:800;text-transform:uppercase}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.03;letter-spacing:-2px;margin:14px 0}.hero p{color:#d2dfd8;line-height:1.65;max-width:500px;margin:0 0 24px}.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:800;transition:transform .15s,opacity .15s}.btn:hover{transform:translateY(-1px)}.btn-lime{background:var(--lime);color:var(--forest)}.btn-dark{background:var(--forest);color:white}.btn-outline{background:transparent;border:1px solid var(--line);color:var(--ink)}.hero .mini-note{font-size:12px;color:#b6c9bf;margin-top:12px}.goal-card{position:relative;z-index:1;background:#ffffff0d;border:1px solid #ffffff20;border-radius:24px;padding:24px;max-width:340px;width:100%;justify-self:end}.goal-top{display:flex;justify-content:space-between;align-items:center;color:#d4e3da;font-size:12px}.pill{border-radius:999px;background:#ffffff12;padding:7px 10px;color:var(--lime);font-size:11px;font-weight:800}.amount{font-size:clamp(30px,4vw,43px);font-weight:850;letter-spacing:-1.5px;margin:22px 0 3px}.subamount{font-size:13px;color:#c5d6cd}.progress{height:9px;background:#ffffff20;border-radius:99px;overflow:hidden;margin:18px 0 10px}.progress>span{display:block;height:100%;background:var(--lime);border-radius:99px;width:0;transition:width .3s}.progress-meta{display:flex;justify-content:space-between;color:#c5d6cd;font-size:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.stat{background:#ffffff0c;border-radius:14px;padding:12px}.stat strong{display:block;color:white;font-size:17px}.stat small{color:#c5d6cd;font-size:11px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:34px 0 16px}.section-head h2{margin:0;font-size:24px;letter-spacing:-.6px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.linklike{border:0;background:none;color:var(--forest2);font-weight:800;font-size:13px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px}.panel h3{font-size:17px;margin:0 0 5px}.muted{color:var(--muted);font-size:13px;line-height:1.5}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:18px}.field label{display:block;font-size:12px;font-weight:800;color:#536157;margin-bottom:7px}.field input,.field select{width:100%;border:1px solid #dce3d9;background:white;border-radius:12px;padding:12px;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:#5e9179;box-shadow:0 0 0 3px #5e91791c}.field.full{grid-column:1/-1}.calc-result{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#eff6e9;border-radius:15px;padding:15px;margin-top:15px}.calc-result strong{font-size:22px;color:var(--forest)}.calc-result span{font-size:12px;color:#536157}
+.challenge-list{display:grid;gap:10px;margin-top:16px}.challenge{display:flex;align-items:center;gap:13px;padding:13px;border:1px solid var(--line);border-radius:16px}.challenge-icon{width:43px;height:43px;border-radius:14px;background:#edf4e6;display:grid;place-items:center;font-size:20px;flex-shrink:0}.challenge-content{flex:1;min-width:0}.challenge-content strong{display:block;font-size:13px}.challenge-content small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.challenge .btn{padding:9px 11px;font-size:12px;white-space:nowrap}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.checkin{display:flex;align-items:center;gap:13px}.check-icon{width:46px;height:46px;background:var(--lime);border-radius:15px;display:grid;place-items:center;font-size:22px}.checkin-copy{flex:1}.checkin-copy strong{display:block;font-size:14px}.checkin-copy span{font-size:12px;color:var(--muted)}.streak{font-size:22px;font-weight:900;color:var(--forest)}
+.share-card{background:#f0f3e8;border-radius:18px;padding:19px;position:relative;overflow:hidden}.share-card .sharebrand{font-size:11px;letter-spacing:2px;font-weight:900;color:var(--forest2)}.share-card h3{font-size:26px;letter-spacing:-1px;margin:12px 0 5px}.share-card p{font-size:13px;color:#59675e;margin:0}.share-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.share-actions .btn{padding:10px 12px;font-size:12px}
+footer{margin-top:28px;color:var(--muted);font-size:11px;line-height:1.6;text-align:center}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--forest);color:white;border-radius:12px;padding:12px 18px;font-size:13px;box-shadow:0 8px 28px #0002;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}.toast.show{opacity:1}
+@media(max-width:760px){.shell{padding:14px 14px 40px}.hero{grid-template-columns:1fr;padding:27px 22px;gap:22px}.goal-card{justify-self:stretch;max-width:none}.grid,.bottom-grid{grid-template-columns:1fr}.section-head{align-items:start}.navright{display:none}.stats{gap:7px}.stat{padding:10px}.formgrid{grid-template-columns:1fr 1fr}.panel{padding:18px}}
+@media(max-width:400px){.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.challenge{gap:9px}.challenge .btn{padding:9px}.challenge-icon{width:38px;height:38px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav><div class="brand"><div class="brandmark">↗</div>PULSO</div><div class="navright">TU DINERO. TUS REGLAS. TU RITMO.</div></nav>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Un pequeño paso cada día</div>
+      <h1>Que ahorrar<br>se convierta en<br><span style="color:var(--lime)">un hábito.</span></h1>
+      <p>Ponle nombre a tu objetivo, conviértelo en un reto y celebra cada avance. Sin conectar tu banco ni complicarte la vida.</p>
+      <button class="btn btn-lime" onclick="document.getElementById('goalAmount').focus();document.getElementById('setup').scrollIntoView({behavior:'smooth',block:'center'})">Crear mi objetivo&nbsp; ↗</button>
+      <div class="mini-note">Gratis para empezar · Sin cuenta · Tus datos se quedan en este dispositivo</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-top"><span id="goalLabel">MI PRÓXIMO OBJETIVO</span><span class="pill">EN MARCHA</span></div>
+      <div class="amount" id="heroSaved">350 €</div>
+      <div class="subamount">de <span id="heroTarget">1.000 €</span> ahorrados</div>
+      <div class="progress"><span id="heroBar"></span></div>
+      <div class="progress-meta"><span id="heroPercent">35 % completado</span><span id="heroLeft">650 € por delante</span></div>
+      <div class="stats">
+        <div class="stat"><strong id="statDays">12</strong><small>días de reto</small></div>
+        <div class="stat"><strong id="statMonthly">54 €</strong><small>al mes aprox.</small></div>
+        <div class="stat"><strong id="statMilestone">35%</strong><small>de la meta</small></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-head"><div><h2>Tu plan, a tu manera</h2><p>Prueba diferentes cantidades y descubre qué ritmo te encaja.</p></div><button class="linklike" onclick="resetDemo()">Restablecer demo ↺</button></div>
+  <div class="grid">
+    <section class="panel" id="setup">
+      <h3>Configura tu objetivo</h3>
+      <div class="muted">No hace falta conectar ninguna cuenta bancaria. Introduce tus cantidades manualmente.</div>
+      <div class="formgrid">
+        <div class="field full"><label for="goalName">¿Para qué estás ahorrando?</label><input id="goalName" maxlength="42" value="Mi fondo de tranquilidad" placeholder="Ej. Viaje, coche, colchón..."></div>
+        <div class="field"><label for="goalAmount">Objetivo (€)</label><input id="goalAmount" type="number" min="1" max="10000000" value="1000"></div>
+        <div class="field"><label for="savedAmount">Ya tengo ahorrado (€)</label><input id="savedAmount" type="number" min="0" max="10000000" value="350"></div>
+        <div class="field"><label for="weeks">¿En cuánto tiempo?</label><select id="weeks"><option value="4">4 semanas</option><option value="8">8 semanas</option><option value="12" selected>12 semanas</option><option value="26">6 meses aprox.</option><option value="52">1 año</option></select></div>
+        <div class="field"><label for="frequency">¿Cómo quieres verlo?</label><select id="frequency"><option value="week">Por semana</option><option value="month" selected>Por mes</option></select></div>
+      </div>
+      <div class="calc-result"><div><span id="neededLabel">Tu objetivo mensual</span><br><strong id="neededAmount">54,17 €</strong></div><span id="neededHint">Un plan orientativo, sin presión.</span></div>
+      <button class="btn btn-dark" style="width:100%;margin-top:14px" onclick="saveGoal()">Guardar mi objetivo</button>
+    </section>
+    <section class="panel">
+      <h3>Elige un reto</h3><div class="muted">Pequeños desafíos para crear constancia. Elige uno para añadirlo a tu plan.</div>
+      <div class="challenge-list">
+        <div class="challenge"><div class="challenge-icon">☕</div><div class="challenge-content"><strong>La pausa consciente</strong><small>Guarda 3 € cuando evites un gasto impulsivo.</small></div><button class="btn btn-outline" onclick="chooseChallenge('La pausa consciente',3)">Elegir</button></div>
+        <div class="challenge"><div class="challenge-icon">🪙</div><div class="challenge-content"><strong>Reto de 7 días</strong><small>Aparta 1 €, 2 €, 3 €… durante una semana.</small></div><button class="btn btn-outline" onclick="chooseChallenge('Reto de 7 días',28)">Elegir</button></div>
+        <div class="challenge"><div class="challenge-icon">🧊</div><div class="challenge-content"><strong>Día sin compras</strong><small>Un día a la semana sin compras no esenciales.</small></div><button class="btn btn-outline" onclick="chooseChallenge('Día sin compras',10)">Elegir</button></div>
+      </div>
+      <div class="muted" style="margin-top:13px">Las cantidades de los retos son ejemplos orientativos, no ahorros garantizados.</div>
+    </section>
+  </div>
+
+  <div class="bottom-grid">
+    <section class="panel">
+      <div class="checkin">
+        <div class="check-icon">✓</div>
+        <div class="checkin-copy"><strong>¿Has apartado dinero hoy?</strong><span>Registra un avance y mantén el impulso.</span></div>
+        <div class="streak" id="checkCount">0 €</div>
+      </div>
+      <div class="formgrid" style="margin-top:16px">
+        <div class="field"><label for="deposit">Cantidad apartada (€)</label><input id="deposit" type="number" min="0.01" step="0.01" placeholder="Ej. 5"></div>
+        <div class="field"><label for="note">Nota (opcional)</label><input id="note" maxlength="50" placeholder="Ej. Café en casa"></div>
+      </div>
+      <button class="btn btn-dark" style="width:100%;margin-top:13px" onclick="addDeposit()">Registrar avance +</button>
+      <div class="muted" id="lastEntry" style="margin-top:10px">Tus avances aparecerán aquí.</div>
+    </section>
+    <section class="panel">
+      <div class="share-card" id="shareCard">
+        <div class="sharebrand">PULSO / MI PROGRESO</div>
+        <h3 id="shareHeadline">Cada euro cuenta.</h3>
+        <p id="shareCopy">Estoy dando pasos hacia mi objetivo de ahorro.</p>
+        <div class="progress" style="background:#d9e1d2"><span id="shareBar" style="background:var(--forest)"></span></div>
+        <div class="progress-meta" style="color:#526157"><span id="sharePercent">35 % conseguido</span><span id="shareRemaining">¡Sigo avanzando!</span></div>
+      </div>
+      <div class="share-actions"><button class="btn btn-dark" onclick="shareProgress()">Compartir mi progreso ↗</button><button class="btn btn-outline" onclick="downloadCard()">Guardar tarjeta ↓</button></div>
+      <div class="muted" style="margin-top:10px">La tarjeta solo comparte el porcentaje y el nombre del objetivo, no tus cantidades, salvo que decidas incluirlas tú.</div>
+    </section>
+  </div>
+  <footer>PULSO es una herramienta de organización personal, no asesoramiento financiero. Las cantidades se guardan localmente en este navegador. No hay premios en efectivo ni rentabilidad garantizada. <br>Prototipo inicial · Antes de lanzarlo comercialmente, valida la demanda y añade política de privacidad y condiciones.</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const $ = id => document.getElementById(id);
+const defaults = {name:"Mi fondo de tranquilidad",target:1000,saved:350,weeks:12,frequency:"month",days:12,history:[]};
+let state = {...defaults};
+function euro(n){return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(Number(n)||0)}
+function num(id){return Math.max(0,Number($(id).value)||0)}
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function render(){
+ const target=Math.max(1,state.target), saved=Math.max(0,state.saved), pct=Math.min(100,Math.round(saved/target*100)), left=Math.max(0,target-saved);
+ $('goalLabel').textContent=(state.name||'MI OBJETIVO').toLocaleUpperCase();
+ $('heroSaved').textContent=euro(saved);$('heroTarget').textContent=euro(target);
+ $('heroBar').style.width=pct+'%';$('heroPercent').textContent=pct+' % completado';$('heroLeft').textContent=left?euro(left)+' por delante':'¡Objetivo conseguido!';
+ $('statDays').textContent=state.days;$('statMonthly').textContent=euro(calcPerMonth()).replace(',00','');$('statMilestone').textContent=pct+'%';
+ $('neededLabel').textContent=state.frequency==='week'?'Tu objetivo semanal':'Tu objetivo mensual';
+ $('neededAmount').textContent=euro(state.frequency==='week'?left/Math.max(1,state.weeks):left/Math.max(1,state.weeks/4.345));
+ $('neededHint').textContent=left===0?'¡Has alcanzado tu objetivo!':'Para llegar en '+state.weeks+' semanas';
+ $('shareHeadline').textContent=pct>=100?'¡Objetivo conseguido!':'Cada euro cuenta.';
+ $('shareCopy').textContent='Estoy avanzando hacia: '+(state.name||'mi objetivo');
+ $('shareBar').style.width=pct+'%';$('sharePercent').textContent=pct+' % conseguido';$('shareRemaining').textContent=pct>=100?'¡Lo logré!':'Paso a paso';
+ $('checkCount').textContent=euro(state.history.reduce((a,b)=>a+b.amount,0));
+ if(state.history.length){const x=state.history[state.history.length-1];$('lastEntry').textContent='Último avance: '+euro(x.amount)+(x.note?' · '+x.note:'')+' · '+x.date}
+}
+function calcPerMonth(){return Math.max(0,state.target-state.saved)/Math.max(1,state.weeks/4.345)}
+function saveGoal(){
+ const target=num('goalAmount'), saved=num('savedAmount');
+ if(target<=0){showToast('El objetivo debe ser mayor que 0 €.');return}
+ if(saved>target){showToast('Lo ahorrado no puede superar la meta en este formulario.');return}
+ state.name=$('goalName').value.trim()||'Mi objetivo';state.target=target;state.saved=saved;state.weeks=Number($('weeks').value);state.frequency=$('frequency').value;
+ persist();render();showToast('Objetivo guardado en este dispositivo.');
+}
+function chooseChallenge(name,amount){state.name=name;state.saved=Math.min(state.target,state.saved+amount);$('goalName').value=name;$('savedAmount').value=state.saved;persist();render();showToast('Reto añadido como simulación: '+euro(amount)+'. Ajusta tu ahorro real al registrarlo.')}
+function addDeposit(){
+ const amount=num('deposit');if(amount<=0){showToast('Introduce una cantidad mayor que 0 €.');return}
+ state.saved=Math.min(state.target,state.saved+amount);state.days+=1;state.history.push({amount,note:$('note').value.trim(),date:new Date().toLocaleDateString('es-ES')});
+ $('savedAmount').value=state.saved;$('deposit').value='';$('note').value='';persist();render();showToast('¡Avance registrado! Sigue a tu ritmo.');
+}
+function persist(){try{localStorage.setItem('pulso-v1',JSON.stringify(state))}catch(e){}}
+function load(){
+ try{const s=JSON.parse(localStorage.getItem('pulso-v1'));if(s)state={...defaults,...s}}catch(e){}
+ $('goalName').value=state.name;$('goalAmount').value=state.target;$('savedAmount').value=state.saved;$('weeks').value=String(state.weeks);$('frequency').value=state.frequency;render();
+}
+function resetDemo(){state={...defaults,history:[]};try{localStorage.removeItem('pulso-v1')}catch(e){};$('goalName').value=state.name;$('goalAmount').value=state.target;$('savedAmount').value=state.saved;$('weeks').value='12';$('frequency').value='month';render();showToast('Demo restablecida.')}
+async function shareProgress(){
+ const pct=Math.min(100,Math.round(state.saved/Math.max(1,state.target)*100));
+ const text='Estoy al '+pct+' % de mi objetivo de ahorro con PULSO: '+state.name+'. ¡Paso a paso! #RetoPulso';
+ if(navigator.share){try{await navigator.share({title:'Mi progreso con PULSO',text});return}catch(e){}}
+ try{await navigator.clipboard.writeText(text);showToast('Texto copiado. ¡Compártelo donde quieras!')}catch(e){prompt('Copia tu progreso:',text)}
+}
+function downloadCard(){
+ const pct=Math.min(100,Math.round(state.saved/Math.max(1,state.target)*100));
+ const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1080;const c=canvas.getContext('2d');
+ c.fillStyle='#153c31';c.fillRect(0,0,1080,1080);c.fillStyle='#d9f6b7';c.font='bold 32px Arial';c.fillText('↗ PULSO',78,100);
+ c.fillStyle='#ffffff';c.font='bold 68px Arial';c.fillText(pct>=100?'¡Objetivo conseguido!':'Cada euro cuenta.',78,260);
+ c.fillStyle='#d4e3da';c.font='32px Arial';const name=(state.name||'Mi objetivo').slice(0,34);c.fillText('Estoy avanzando hacia:',78,340);c.fillStyle='#ffffff';c.font='bold 42px Arial';c.fillText(name,78,405);
+ c.fillStyle='#426456';c.beginPath();c.roundRect(78,500,924,24,12);c.fill();c.fillStyle='#d9f6b7';c.beginPath();c.roundRect(78,500,924*pct/100,24,12);c.fill();
+ c.fillStyle='#d9f6b7';c.font='bold 62px Arial';c.fillText(pct+' %',78,620);c.fillStyle='#d4e3da';c.font='28px Arial';c.fillText('Pequeños pasos. Grandes objetivos.',78,950);
+ const a=document.createElement('a');a.download='mi-progreso-pulso.png';a.href=canvas.toDataURL('image/png');a.click();showToast('Tarjeta descargada.');
+}
+load();
+</script>
+</body>
+</html>
